@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const array = [0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10, 2]
+
+
+
+        // 1 . Do the below programs in anonymous function & IIFE
+
+        // 1.1 Print odd numbers in an array =>
+        let oddNumber = function (arr) {
+
+            let oddNum = [];
+
+            for (let i = 0; i < arr.length; i++) {
+
+                if (arr[i] % 2 === 1) {
+
+                    oddNum.push(arr[i])
+
+                }
+
+            }
+            return oddNum
+        }
+        let result = oddNumber([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        console.log(result)
+
+
+        //1.2 Convert all the strings to title caps in a string array
+        const toUpperLetter = function (str) {
+            return str.replace(
+                /\w\S*/g,
+                function (txt) {
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                }
+            );
+        }
+        console.log(toUpperLetter('shubham'))
+
+
+        //1.3 Sum of all numbers in an array
+        let sum = (function (arr) {
+            // function to join each string elements
+            var Sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                Sum += arr[i]
+            }
+            return Sum
+        })(array);
+        console.log(sum)
+
+
+        //1.4 Return all the prime numbers in an array
+
+        const prime = (function () {
+            function isPrime(num) {
+                if (num < 2) return false;
+                for (let i = 2; i <= Math.sqrt(num); i++) {
+                    if (num % i === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function primesInArray(arr) {
+                return arr.filter(isPrime);
+            }
+
+            return primesInArray(array);
+        })();
+
+        console.log(prime);
+
+
+        //1.5 Return all the palindromes in an array
+
+        const word = ['rotator', 'javascript']
+
+        const checkPalindrom = function (str) { //function that checks if palindrome or not
+            return str == str.split('').reverse().join('');
+        }
+
+        const palindromWord = word.filter(word => checkPalindrom(word)); //filter function that filters array to only keep palindromes
+
+        console.log(palindromWord)
+
+
+        //1.6 Return median of two sorted arrays of the same size.
+
+        const median = function (a1, a2) {
+            let x = a1.concat(a2);
+            x.sort(function (a, b) {
+                return a - b;
+            });
+            let len = x.length;
+
+            return len % 2 === 0 ? (x[Math.floor(len / 2) - 1] + x[Math.ceil(len / 2)]) / 2 : x[Math.floor(len / 2)];
+
+        }
+
+        let a = [0, 2, 3, 5, 9];
+        let b = [1, 4];
+        console.log(median(a, b));
+
+
+        //1.7 Remove duplicates from an array
+
+        function UniqueArray(arr) {
+            let resArr = [];
+
+            // Iterate through array
+            for (let i of arr) {
+                if (resArr.indexOf(i) === -1) {
+                    resArr.push(i);
+                }
+            }
+            return resArr;  // return the result array
+        }
+
+        console.log(UniqueArray(array));  // Outputs: [1, 2, 3, 4, 5]
+
+
+        //1.8 Rotate an array by k times
+
+        var rotate = function (arr, numberOfShifts) {
+            let tmp = 0;
+            const leng = arr.length;
+            numberOfShifts = numberOfShifts % leng;
+            for (let i = 0; i < numberOfShifts; i++) {
+                tmp = arr.pop();
+                arr.unshift(tmp);
+            }
+            return arr;
+        };
+
+        console.log(rotate(array, 3))
+
+
+
+        // 2.0  Do the below programs in arrow functions.
+
+        //2.1 Print odd numbers in an array
+        let oddNumberArrow = function (arr) {
+
+            let oddNum = [];
+
+            for (let i = 0; i < arr.length; i++) {
+
+                if (arr[i] % 2 === 1) {
+
+                    oddNum.push(arr[i])
+
+                }
+
+            }
+            return oddNum
+        }
+
+        console.log(oddNumberArrow([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+
+
+        //2.2 Convert all the strings to title caps in a string array
+
+        const toUpperLetterArrow = (str) => {
+            return (str?.replace(
+                (/\w\S*/g),
+                function (txt) {
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                }
+            ))
+        }
+        console.log(toUpperLetterArrow('shubham'))
+
+        //2.3 Sum of all numbers in an array
+
+        let sumArrow = (arr) => {
+            // function to join each string elements
+            var Sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                Sum += arr[i]
+            }
+            return Sum
+        }
+        toUpperLetterArrow(array)
+        console.log(sum)
+
+        //2.4 Return all the prime numbers in an array
+
+        const primeArrow = () => {
+            function isPrime(num) {
+                if (num < 2) return false;
+                for (let i = 2; i <= Math.sqrt(num); i++) {
+                    if (num % i === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function primesInArray(arr) {
+                return arr.filter(isPrime);
+            }
+
+            return primesInArray(array);
+        };
+
+        console.log(primeArrow(array));
+
+        //2.5 Return all the palindromes in an array
+
+        const wordArrow = ['rotator', 'javascript']
+
+        const checkPalindromArrow = (str) => { //function that checks if palindrome or not
+            return str == str.split('').reverse().join('');
+        }
+
+        const palindromWordArrow = word.filter(word => checkPalindrom(word)); //filter function that filters array to only keep palindromes
+
+        console.log(palindromWord)
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
